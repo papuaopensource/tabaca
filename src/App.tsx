@@ -1,4 +1,4 @@
-import { Info, RefreshCw } from "lucide-react"
+import { Info, PanelLeftClose, PanelLeftOpen, RefreshCw } from "lucide-react"
 import { useMemo, useState } from "react"
 import AboutPanel from "./components/AboutPanel"
 import EmptyState from "./components/EmptyState"
@@ -18,6 +18,7 @@ export default function App() {
   const [activeSource, setActiveSource] = useState<SourceId | "all">("all")
   const [page, setPage] = useState(1)
   const [aboutOpen, setAboutOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
 
   const filtered = useMemo(() => {
     if (activeSource === "all") return stories
@@ -43,18 +44,42 @@ export default function App() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-cream-100">
-      <Sidebar />
+      {/* Sidebar */}
+      <div
+        className={[
+          "flex-shrink-0 h-screen overflow-hidden transition-all duration-300 ease-in-out",
+          sidebarOpen ? "w-60" : "w-0"
+        ].join(" ")}
+      >
+        <Sidebar />
+      </div>
 
       <main className="flex-1 overflow-y-auto flex flex-col min-w-0">
         {/* Top bar */}
         <div className="sticky top-0 z-10 bg-cream-100/90 backdrop-blur-sm border-b border-cream-200">
-          <div className="px-6 h-12 flex items-center justify-between gap-4">
+          <div className="px-4 h-12 flex items-center gap-2">
+            {/* Sidebar toggle */}
+            <button
+              onClick={() => setSidebarOpen((v) => !v)}
+              className="btn-ghost flex-shrink-0"
+              title={sidebarOpen ? "Tutup sidebar" : "Buka sidebar"}
+            >
+              {sidebarOpen
+                ? <PanelLeftClose size={15} />
+                : <PanelLeftOpen size={15} />
+              }
+            </button>
+
+            <div className="w-px h-5 bg-cream-200 flex-shrink-0" />
+
             {/* Source filter tabs */}
-            <SourceFilter
-              active={activeSource}
-              onChange={handleSourceChange}
-              counts={counts}
-            />
+            <div className="flex-1 overflow-hidden">
+              <SourceFilter
+                active={activeSource}
+                onChange={handleSourceChange}
+                counts={counts}
+              />
+            </div>
 
             {/* Actions */}
             <div className="flex items-center gap-1 flex-shrink-0">
@@ -69,10 +94,7 @@ export default function App() {
                 className="btn-ghost text-xs"
                 title="Perbarui cerita"
               >
-                <RefreshCw
-                  size={13}
-                  className={isRefreshing ? "animate-spin" : ""}
-                />
+                <RefreshCw size={13} className={isRefreshing ? "animate-spin" : ""} />
                 <span className="hidden sm:inline">Perbarui</span>
               </button>
               <button

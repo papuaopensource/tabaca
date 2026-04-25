@@ -2,15 +2,10 @@ from pathlib import Path
 from django.urls import reverse_lazy
 from decouple import config, Csv
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = config(
-    "SECRET_KEY", default="django-insecure-dev-key-change-in-production"
-)
-DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS", default="localhost,127.0.0.1,tabaca.localhost", cast=Csv()
-)
+SECRET_KEY = config("SECRET_KEY", default="django-insecure-dev-key-change-in-production")
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1", cast=Csv())
 
 INSTALLED_APPS = [
     "unfold",
@@ -61,17 +56,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "django_project.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -87,7 +73,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# REST Framework
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
         "djangorestframework_camel_case.render.CamelCaseJSONRenderer",
@@ -105,15 +90,10 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 20,
 }
 
-# CORS — allow browser extension
-CORS_ALLOW_ALL_ORIGINS = DEBUG
-CORS_ALLOWED_ORIGINS = [
-    o for o in config("CORS_ALLOWED_ORIGINS", default="", cast=Csv()) if o
-]
+CORS_ALLOWED_ORIGINS = [o for o in config("CORS_ALLOWED_ORIGINS", default="", cast=Csv()) if o]
 
-# Unfold admin
 UNFOLD = {
-    "SITE_TITLE": "Tabaca Admin",
+    "SITE_TITLE": "Tabaca",
     "SITE_HEADER": "Tabaca",
     "SITE_URL": "/api/v1/",
     "SITE_SYMBOL": "newspaper",

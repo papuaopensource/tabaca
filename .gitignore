@@ -3,3 +3,4 @@ node_modules/
 .output/
 *.zip
 .DS_Store
+plan.md

@@ -16,16 +16,9 @@ export interface Story {
   region?: Region
 }
 
-export interface SourceStat {
-  count: number
-  lastFetchAt: string
-  error?: string
-}
-
 export interface CacheMeta {
   lastFetchAt: string
   lastError?: string
-  sourceStats: Partial<Record<SourceId, SourceStat>>
 }
 
 export interface UserPrefs {

@@ -2,7 +2,6 @@ import { Info, RefreshCw } from "lucide-react"
 import { useMemo, useState } from "react"
 import AboutPanel from "./components/AboutPanel"
 import EmptyState from "./components/EmptyState"
-import FeaturedCard from "./components/FeaturedCard"
 import Sidebar from "./components/Sidebar"
 import SourceFilter from "./components/SourceFilter"
 import StoryCard from "./components/StoryCard"
@@ -10,7 +9,7 @@ import { useRefresh } from "./hooks/useRefresh"
 import { useStories } from "./hooks/useStories"
 import type { SourceId } from "./storage/schema"
 
-const PAGE_SIZE = 12
+const PAGE_SIZE = 20
 
 export default function App() {
   const { stories, prefs, isLoading, handleBookmark } = useStories()
@@ -33,9 +32,8 @@ export default function App() {
     return all
   }, [stories])
 
-  const featured = filtered[0] ?? null
-  const rest = filtered.slice(1, 1 + page * PAGE_SIZE)
-  const hasMore = 1 + page * PAGE_SIZE < filtered.length
+  const visible = filtered.slice(0, page * PAGE_SIZE)
+  const hasMore = visible.length < filtered.length
   const bookmarkedIds = new Set(prefs?.bookmarkedStoryIds ?? [])
 
   const handleSourceChange = (source: SourceId | "all") => {
@@ -49,20 +47,19 @@ export default function App() {
 
       <main className="flex-1 overflow-y-auto flex flex-col min-w-0">
         {/* Top bar */}
-        <div className="sticky top-0 z-10 bg-cream-100/90 backdrop-blur-sm border-b border-cream-200">
-          <div className="px-8 py-3.5 flex items-center justify-between gap-4">
-            <div>
-              <h1 className="text-sm font-bold text-ink-800 leading-tight tracking-tight">
-                Papua Hari Ini
-              </h1>
-              <p className="text-xs text-ink-400 font-medium">
-                Cerita terpercaya dari berbagai sumber kredibel.
-              </p>
-            </div>
+        <div className="sticky top-0 z-10 bg-white border-b border-cream-200">
+          <div className="px-6 h-12 flex items-center justify-between gap-4">
+            {/* Source filter tabs */}
+            <SourceFilter
+              active={activeSource}
+              onChange={handleSourceChange}
+              counts={counts}
+            />
 
-            <div className="flex items-center gap-1">
+            {/* Actions */}
+            <div className="flex items-center gap-1 flex-shrink-0">
               {lastUpdated && (
-                <span className="hidden md:block text-xs text-ink-400 font-medium mr-2">
+                <span className="hidden lg:block text-xs text-ink-400 font-medium mr-2">
                   {lastUpdated}
                 </span>
               )}
@@ -72,7 +69,10 @@ export default function App() {
                 className="btn-ghost text-xs"
                 title="Perbarui cerita"
               >
-                <RefreshCw size={13} className={isRefreshing ? "animate-spin" : ""} />
+                <RefreshCw
+                  size={13}
+                  className={isRefreshing ? "animate-spin" : ""}
+                />
                 <span className="hidden sm:inline">Perbarui</span>
               </button>
               <button
@@ -86,8 +86,8 @@ export default function App() {
           </div>
         </div>
 
-        {/* Content */}
-        <div className="flex-1 px-8 py-7">
+        {/* Feed */}
+        <div className="flex-1 p-6">
           {isLoading ? (
             <EmptyState isLoading hasFilter={false} onRefresh={triggerRefresh} />
           ) : filtered.length === 0 ? (
@@ -97,56 +97,34 @@ export default function App() {
               onRefresh={triggerRefresh}
             />
           ) : (
-            <div className="max-w-5xl">
-              {/* Featured */}
-              {featured && (
-                <section className="mb-10">
-                  <p className="section-label mb-3">Cerita Pilihan</p>
-                  <FeaturedCard story={featured} />
-                </section>
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {visible.map((story) => (
+                  <StoryCard
+                    key={story.id}
+                    story={story}
+                    isBookmarked={bookmarkedIds.has(story.id)}
+                    onBookmark={handleBookmark}
+                  />
+                ))}
+              </div>
+
+              {hasMore && (
+                <div className="mt-10 flex justify-center">
+                  <button
+                    onClick={() => setPage((p) => p + 1)}
+                    className="btn-terra-outline px-6 py-2.5"
+                  >
+                    Muat lebih banyak
+                  </button>
+                </div>
               )}
-
-              {/* Cerita Lainnya */}
-              {rest.length > 0 && (
-                <section>
-                  <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
-                    <p className="section-label">Cerita Lainnya</p>
-                    <SourceFilter
-                      active={activeSource}
-                      onChange={handleSourceChange}
-                      counts={counts}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {rest.map((story) => (
-                      <StoryCard
-                        key={story.id}
-                        story={story}
-                        isBookmarked={bookmarkedIds.has(story.id)}
-                        onBookmark={handleBookmark}
-                      />
-                    ))}
-                  </div>
-
-                  {hasMore && (
-                    <div className="mt-10 flex justify-center">
-                      <button
-                        onClick={() => setPage((p) => p + 1)}
-                        className="btn-terra-outline px-6 py-2.5"
-                      >
-                        Muat lebih banyak
-                      </button>
-                    </div>
-                  )}
-                </section>
-              )}
-            </div>
+            </>
           )}
         </div>
 
         {/* Footer */}
-        <footer className="border-t border-cream-200 px-8 py-4 flex items-center justify-between text-xs text-ink-300 font-medium flex-shrink-0">
+        <footer className="border-t border-cream-200 px-6 py-3 flex items-center justify-between text-xs text-ink-300 font-medium flex-shrink-0 bg-white">
           <span>Dibuat dengan ❤️ oleh Papua Open Source</span>
           <div className="flex items-center gap-4">
             <button

@@ -32,7 +32,7 @@ const FeaturedCard: FC<FeaturedCardProps> = ({ story }) => {
       href={story.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block rounded-3xl overflow-hidden bg-white border border-cream-200 hover:shadow-[0_8px_40px_rgba(0,0,0,0.10)] transition-all duration-300"
+      className="group block rounded-3xl overflow-hidden bg-white border border-cream-200 hover:border-cream-400 transition-colors duration-150"
     >
       <div className="flex flex-col sm:flex-row">
         {/* Image */}

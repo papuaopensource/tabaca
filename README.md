@@ -24,7 +24,6 @@ Cerita difilter otomatis berdasarkan kata kunci yang berkaitan dengan Papua — 
 - [DEVELOPMENT.md](DEVELOPMENT.md) — setup lokal, API reference, perintah manajemen
 - [CONTRIBUTING.md](CONTRIBUTING.md) — alur PR, konvensi kode, menambah sumber baru
 
----
 
 ## Lisensi
 

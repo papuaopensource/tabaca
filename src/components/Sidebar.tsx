@@ -64,8 +64,12 @@ export default function Sidebar() {
   return (
     <aside className="w-60 flex-shrink-0 h-screen overflow-y-auto border-r border-cream-200 bg-cream-100 flex flex-col">
       {/* Logo */}
-      <div className="px-6 pt-6 pb-5">
-        <img src={logoSrc} alt="Tabaca" className="h-10 w-auto" />
+      <div className="px-6 pt-6 pb-5 flex items-center gap-3">
+        <img src={logoSrc} alt="Tabaca" className="h-10 w-auto flex-shrink-0" />
+        <div>
+          <p className="text-sm font-bold text-ink-800 tracking-tight leading-tight">tabaca</p>
+          <p className="text-[10px] text-ink-400 font-medium leading-tight mt-0.5">Stories from Papua,<br />One Tab Away</p>
+        </div>
       </div>
 
       <div className="px-6 flex flex-col gap-6 flex-1">

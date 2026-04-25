@@ -21,9 +21,10 @@ Cerita difilter otomatis berdasarkan kata kunci yang berkaitan dengan Papua — 
 
 ---
 
-## Berkontribusi
+## Dokumentasi
 
-Tertarik berkontribusi? Lihat [CONTRIBUTING.md](CONTRIBUTING.md) untuk panduan lengkap.
+- [DEVELOPMENT.md](DEVELOPMENT.md) — setup lokal, API reference, perintah manajemen
+- [CONTRIBUTING.md](CONTRIBUTING.md) — alur PR, konvensi kode, menambah sumber baru
 
 ---
 

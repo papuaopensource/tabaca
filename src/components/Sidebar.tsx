@@ -65,7 +65,7 @@ export default function Sidebar() {
     <aside className="w-60 flex-shrink-0 h-screen overflow-y-auto border-r border-cream-200 bg-white flex flex-col">
       {/* Logo */}
       <div className="px-6 pt-6 pb-5">
-        <img src={logoSrc} alt="Tabaca" className="h-8 w-auto" />
+        <img src={logoSrc} alt="Tabaca" className="h-12 w-auto" />
       </div>
 
       <div className="px-6 flex flex-col gap-6 flex-1">

@@ -2,7 +2,6 @@
 
 Terima kasih sudah tertarik berkontribusi pada tabaca-backend! Untuk setup lingkungan dev, lihat [DEVELOPMENT.md](DEVELOPMENT.md).
 
----
 
 ## Alur kerja
 
@@ -25,7 +24,6 @@ Terima kasih sudah tertarik berkontribusi pada tabaca-backend! Untuk setup lingk
    ```
 6. Buat **Pull Request** ke `main`
 
----
 
 ## Konvensi kode
 
@@ -36,7 +34,6 @@ Terima kasih sudah tertarik berkontribusi pada tabaca-backend! Untuk setup lingk
 - Gunakan `get_or_create` / `update_or_create` untuk upsert agar idempoten
 - Tulis komentar hanya untuk menjelaskan *kenapa*, bukan *apa*
 
----
 
 ## Menambah sumber berita baru
 
@@ -69,7 +66,6 @@ Terima kasih sudah tertarik berkontribusi pada tabaca-backend! Untuk setup lingk
 
 4. Tambahkan ke `SOURCE_CHOICES` di `stories/models.py`
 
----
 
 ## Menambah kata kunci kurasi
 
@@ -80,7 +76,6 @@ Kata kunci bisa ditambah langsung dari panel admin (menu **Kata Kunci**), atau l
 uv run python manage.py seed_keywords
 ```
 
----
 
 ## Pertanyaan?
 

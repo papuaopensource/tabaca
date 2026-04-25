@@ -4,7 +4,6 @@ Backend untuk [Tabaca](https://github.com/papuaopensource/tabaca) — ekstensi b
 
 Project ini menyediakan API yang digunakan oleh ekstensi untuk mengambil cerita, serta panel admin untuk mengelola sumber berita dan kata kunci kurasi Papua.
 
----
 
 ## Sumber berita
 
@@ -19,7 +18,6 @@ Tabaca mengumpulkan cerita dari empat sumber:
 
 Cerita difilter otomatis berdasarkan kata kunci yang berkaitan dengan Papua — mulai dari nama wilayah, suku, hingga isu-isu yang relevan.
 
----
 
 ## Dokumentasi
 

@@ -2,7 +2,6 @@
 
 Panduan teknis untuk menjalankan dan mengembangkan tabaca-backend secara lokal.
 
----
 
 ## Stack
 
@@ -15,14 +14,12 @@ Panduan teknis untuk menjalankan dan mengembangkan tabaca-backend secara lokal.
 | Database | SQLite (dev) / PostgreSQL (prod) |
 | Env config | python-decouple |
 
----
 
 ## Prasyarat
 
 - Python 3.12+
 - [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
----
 
 ## Setup
 
@@ -44,7 +41,6 @@ uv run python manage.py runserver
 Server berjalan di `http://localhost:8000`.  
 Admin panel: `http://localhost:8000/site-manager/`
 
----
 
 ## Settings
 
@@ -64,7 +60,6 @@ Untuk override eksplisit:
 DJANGO_SETTINGS_MODULE=django_project.settings.production uv run python manage.py check
 ```
 
----
 
 ## Variabel environment
 
@@ -83,7 +78,6 @@ CORS_ALLOWED_ORIGINS=
 # DB_PORT=5432
 ```
 
----
 
 ## API
 
@@ -119,7 +113,6 @@ Output camelCase (konsisten dengan frontend TypeScript):
 }
 ```
 
----
 
 ## Perintah manajemen
 
@@ -137,7 +130,6 @@ uv run python manage.py seed_keywords --clear
 uv run python manage.py seed_sources
 ```
 
----
 
 ## Linter & tests
 
@@ -147,7 +139,6 @@ uv run ruff format .
 uv run pytest
 ```
 
----
 
 ## Struktur project
 

@@ -4,9 +4,13 @@ from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config("SECRET_KEY", default="django-insecure-dev-key-change-in-production")
+SECRET_KEY = config(
+    "SECRET_KEY", default="django-insecure-dev-key-change-in-production"
+)
 DEBUG = config("DEBUG", default=True, cast=bool)
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1", cast=Csv())
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS", default="localhost,127.0.0.1,tabaca.localhost", cast=Csv()
+)
 
 INSTALLED_APPS = [
     "unfold",
@@ -65,7 +69,9 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -101,13 +107,15 @@ REST_FRAMEWORK = {
 
 # CORS — allow browser extension
 CORS_ALLOW_ALL_ORIGINS = DEBUG
-CORS_ALLOWED_ORIGINS = [o for o in config("CORS_ALLOWED_ORIGINS", default="", cast=Csv()) if o]
+CORS_ALLOWED_ORIGINS = [
+    o for o in config("CORS_ALLOWED_ORIGINS", default="", cast=Csv()) if o
+]
 
 # Unfold admin
 UNFOLD = {
     "SITE_TITLE": "Tabaca Admin",
     "SITE_HEADER": "Tabaca",
-    "SITE_URL": "/api/",
+    "SITE_URL": "/api/v1/",
     "SITE_SYMBOL": "newspaper",
     "SHOW_HISTORY": True,
     "SHOW_VIEW_ON_SITE": False,

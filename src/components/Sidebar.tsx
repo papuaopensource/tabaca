@@ -2,6 +2,7 @@ import { Search } from "lucide-react"
 import type { FormEvent } from "react"
 import { format } from "date-fns"
 import { id } from "date-fns/locale"
+import logoSrc from "../../assets/logo-transparent.png"
 
 const QUOTES = [
   {
@@ -64,12 +65,7 @@ export default function Sidebar() {
     <aside className="w-60 flex-shrink-0 h-screen overflow-y-auto border-r border-cream-200 bg-white flex flex-col">
       {/* Logo */}
       <div className="px-6 pt-6 pb-5">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-lg bg-terra-500 flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-xs font-bold tracking-tight">T</span>
-          </div>
-          <span className="text-sm font-bold text-ink-800 tracking-tight">tabaca</span>
-        </div>
+        <img src={logoSrc} alt="Tabaca" className="h-8 w-auto" />
       </div>
 
       <div className="px-6 flex flex-col gap-6 flex-1">

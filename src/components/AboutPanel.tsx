@@ -1,5 +1,6 @@
 import { Github, X } from "lucide-react"
 import type { FC } from "react"
+import logoSrc from "../../assets/logo-transparent.png"
 
 interface AboutPanelProps {
   onClose: () => void
@@ -48,9 +49,7 @@ const AboutPanel: FC<AboutPanelProps> = ({ onClose }) => {
 
         {/* Header */}
         <div className="flex items-center gap-3.5 mb-6">
-          <div className="w-11 h-11 rounded-2xl bg-terra-500 flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-lg font-display">T</span>
-          </div>
+          <img src={logoSrc} alt="Tabaca" className="h-10 w-auto flex-shrink-0" />
           <div>
             <h2 className="text-base font-bold text-ink-900">Tabaca</h2>
             <p className="text-xs text-ink-400 font-medium">Stories from Papua, One Tab Away</p>

@@ -47,7 +47,7 @@ export default function App() {
 
       <main className="flex-1 overflow-y-auto flex flex-col min-w-0">
         {/* Top bar */}
-        <div className="sticky top-0 z-10 bg-white border-b border-cream-200">
+        <div className="sticky top-0 z-10 bg-cream-100/90 backdrop-blur-sm border-b border-cream-200">
           <div className="px-6 h-12 flex items-center justify-between gap-4">
             {/* Source filter tabs */}
             <SourceFilter
@@ -124,7 +124,7 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <footer className="border-t border-cream-200 px-6 py-3 flex items-center justify-between text-xs text-ink-300 font-medium flex-shrink-0 bg-white">
+        <footer className="border-t border-cream-200 px-6 py-3 flex items-center justify-between text-xs text-ink-300 font-medium flex-shrink-0">
           <span>Dibuat dengan ❤️ oleh Papua Open Source</span>
           <div className="flex items-center gap-4">
             <button

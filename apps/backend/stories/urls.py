@@ -1,5 +1,6 @@
 from rest_framework.routers import DefaultRouter
-from .views import StoryViewSet, SourceViewSet, FetchLogViewSet
+
+from .views import FetchLogViewSet, SourceViewSet, StoryViewSet
 
 router = DefaultRouter()
 router.register("stories", StoryViewSet, basename="story")

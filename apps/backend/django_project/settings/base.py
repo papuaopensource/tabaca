@@ -1,6 +1,7 @@
 from pathlib import Path
+
+from decouple import Csv, config
 from django.urls import reverse_lazy
-from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -88,6 +89,10 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "stories.pagination.StandardPagination",
     "PAGE_SIZE": 20,
+    "DEFAULT_THROTTLE_RATES": {
+        # Generous per-IP limit: many readers can share one IP (campus, office, mobile NAT).
+        "story-read": "600/hour",
+    },
 }
 
 CORS_ALLOWED_ORIGINS = [o for o in config("CORS_ALLOWED_ORIGINS", default="", cast=Csv()) if o]
@@ -155,6 +160,11 @@ UNFOLD = {
                         "title": "Kata Kunci",
                         "icon": "label",
                         "link": reverse_lazy("admin:curation_keyword_changelist"),
+                    },
+                    {
+                        "title": "Kata Terlarang",
+                        "icon": "block",
+                        "link": reverse_lazy("admin:curation_blockedkeyword_changelist"),
                     },
                 ],
             },

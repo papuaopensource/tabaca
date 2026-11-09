@@ -1,0 +1,12 @@
+{
+  "name": "@tabaca/backend",
+  "version": "0.1.0",
+  "description": "Django API and admin for Tabaca (Python, managed with uv)",
+  "private": true,
+  "scripts": {
+    "dev": "uv run python manage.py migrate --verbosity 0 && uv run python manage.py runserver",
+    "test": "uv run pytest",
+    "lint": "uv run ruff check . && uv run ruff format --check .",
+    "format": "uv run ruff format . && uv run ruff check --fix ."
+  }
+}

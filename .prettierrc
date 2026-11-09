@@ -3,13 +3,5 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "none",
-  "printWidth": 80,
-  "plugins": ["@plasmohq/prettier-plugin-sort-imports"],
-  "importOrder": [
-    "^react",
-    "^plasmo",
-    "<THIRD_PARTY_MODULES>",
-    "^@/(.*)$",
-    "^[./]"
-  ]
+  "printWidth": 80
 }

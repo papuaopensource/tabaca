@@ -1,6 +1,32 @@
+# Dependencies
 node_modules/
+
+# Turborepo
+.turbo/
+
+# WXT (extension)
 .wxt/
 .output/
 *.zip
+*.tsbuildinfo
+
+# Python (backend)
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Django (backend)
+*.sqlite3
+staticfiles/
+media/
+
+# Env
+.env
+.env.local
+
+# OS / editors
 .DS_Store
 plan.md
